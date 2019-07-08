@@ -1,0 +1,48 @@
+a:link		{font-family:verdana;font-size:12px;color:#FFB019;text-decoration:none}
+a:visited	{font-family:verdana;font-size:12px;color:#FFB019;text-decoration:none}
+a:hover	{font-family:verdana;font-size:12px;color:#ffffff;text-decoration:underline}
+
+font.title1 {font-family:verdana;font-size:12px;color:#CEE5EF;font-weight:bold}
+font.title2 {font-family:verdana;font-size:16px;font-weight:bold}
+font.title3 {font-family:verdana;font-size:16px;color:#66FF00;font-weight:bold}
+
+font.wow_title_small {font-family:verdana;font-size:16px;font-weight:bold;color:#66CC00}
+font.wow_strong_small {font-family:verdana;font-size: 12px;color:#00cc00}
+
+font.max_value {color:#00FF00}
+font.min_value {color:#CC6600}
+
+body			{font-family:verdana;font-size: 12px;line-height: 140%;color:#D7CEA4}
+p				{font-family:verdana;font-size: 12px;line-height: 140%;color:#D7CEA4;}
+td				{font-family:verdana;font-size: 12px;line-height:140%;color:#D7CEA4;}
+
+.general {font-family:verdana;font-size: 12px;line-height: 140%;color:#D7CEA4}
+input		{font-family:verdana;font-size:12px;border-width:1px}
+input.btn{
+   color:#7C5610;
+   font-family:'trebuchet ms',helvetica,sans-serif;
+   font-size:84%;
+   font-weight:bold;
+   background-color:#fed;
+   border:1px solid;
+   border-top-color:#696;
+   border-left-color:#696;
+   border-right-color:#363;
+   border-bottom-color:#363;
+
+   filter:progid:DXImageTransform.Microsoft.Gradient
+      (GradientType=1,StartColorStr='#ffffffff',EndColorStr='#c4a974');}
+
+option {font-family:verdana;font-size:12px;border-width:1px;}
+
+span.accent {color:#FFCC00;}
+span.talent_name {color:#FFFFFF;}
+div.tooltip {text-align:left; border-width:1px; border-style:outset; border-color:#66FF00; background-color:black; layer-background-color:tan; color:black; }
+
+span.InfoTextSkill {background-color:#009900; cursor: pointer; cursor: hand; color:white}
+div.infoSkill {text-align:left; border-width:1px; border-style:outset; border-color:#66FF00; background-color:black; layer-background-color:tan; color:black; }
+
+span.click_small_text {cursor: pointer; cursor: hand}
+
+span.overThing {cursor: pointer; cursor: hand;background-color:#CC0000;color:white}
+span.outThing {cursor: pointer; cursor: hand}
