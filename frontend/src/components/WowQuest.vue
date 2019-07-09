@@ -72,7 +72,7 @@
         >
           <img
             :id="quest.name"
-            :src="`http://localhost:3000/static/와우오리퀘스트/${area}/${quest.name}`"
+            :src="`/static/와우오리퀘스트/${area}/${quest.name}`"
             style="width:540px;padding:20px 0"
         ></v-card>
       </v-flex>
@@ -145,7 +145,7 @@ export default {
     },
     async getDirectory () {
       try {
-        var result = await this.$http.get(`http://localhost:3000/list`, {})
+        var result = await this.$http.get(`/list`, {})
         this.list = result.data
 
         this.items = this.list.filter(obj => obj.type === 'dir')
@@ -156,7 +156,7 @@ export default {
     async getQuest (area, quest) {
       try {
         this.area = area
-        var result = await this.$http.get(`http://localhost:3000/list/${area}`, {})
+        var result = await this.$http.get(`/list/${area}`, {})
         this.questList = result.data
         if (quest) {
           document.getElementById(quest).scrollIntoView()

@@ -1,0 +1,1341 @@
+@CHARSET "UTF-8";
+
+@import "common.css";
+@import "layout.css";
+@import "style.css";
+@import "forum.css";
+
+html { 
+	background-color: #3c3c3c;
+	background-position: top;
+	background-repeat: repeat-x;
+	background-image: url(../forum/wow/htmlBack.gif); 
+}
+body { 
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-image: url(../forum/wow/wow_main_bg.jpg); 
+}
+
+#wrapper { 
+	width: 980px; 
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+
+#container {
+	padding-bottom: 60px;
+	background: url(../common/forum_contentBg.gif) left repeat-y;
+}
+
+#area {
+	float: right;
+	width: 840px;
+	overflow:hidden; zoom:1;
+}
+
+#contents { 
+	padding: 20px;
+}
+
+#contents,
+.sitemap { 
+	background-color: #FFF; 
+}
+
+#sitemapList { padding:0 20px; }
+#sitemapList .playMore,
+#sitemapList .playMore dl{ width:165px; }
+
+footer li a { color:#aaa; }
+footer li a:hover { color:#eee; }
+
+/* visual 
+------------------------------------------- */
+.visualWrap { 
+	height: 150px;
+	width: 980px;
+}
+
+.visualWrap .logo_home a {
+	display: block;
+	height: 150px;
+	width: 230px;
+	float: left;
+	text-indent: -5000em;
+}
+
+.subVisual {
+ position: relative; 
+ border-top: 1px solid #282828;
+ background: #000;
+}
+.subVisual img {
+ vertical-align: top;
+}
+.subVisual img {
+	vertical-align: top;
+}
+.BannerRight {
+	position:absolute; 
+	top: 0px; right: 0; 
+	z-index: 10;
+}
+.BannerRight .banner {
+	position:absolute; 
+	top: 0px; right: 25px; 
+	z-index: 10;
+}
+.BannerRight .arrBg {
+	position:absolute; 
+	top: 410px; right: 25px; 
+	z-index: 15;
+	display: block;
+	width: 150px; height: 90px;
+	background: url(../common/forum_rightArrBg.png) 0 0 no-repeat;
+	_background: none;
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/static/common/forum_rightArrBg.png", sizingMethod="image"); 
+}
+
+.BannerTop {
+	position:absolute;
+	background: url(../forum/ad_bg.png) no-repeat !important;
+	background: url(../forum/ad_bg.gif) no-repeat ;
+	top: 45px; right: 0; 
+	width: 762px;
+	height: 118px;
+	z-index: 10;
+}
+
+.BannerTop div {
+	width: 730px;
+	height: 90px;
+	margin : 11px 0 0 21px;
+	border: 1px solid #3d3d3d;
+}
+
+
+/* 공지사항 */
+.visualNotice {
+	width: 270px;
+	height: 70px;
+	padding: 10px 15px 0 15px;
+}
+.visualNotice h3 {
+ font-size: 12px;
+ color: #999999;
+ margin-bottom: 5px;
+}
+.visualNotice h3 a.more {
+ _right: 18px;
+}
+.visualNotice h3 a.more:hover {
+	color: #CF5F2C;
+}
+.visualNotice li a {
+	overflow: hidden; zoom: 1; 
+	display: block;
+	width: 270px;
+	height: 18px;
+	font-size: 11px;
+	font-family: "돋움", dotum, sans-serif; 
+	color: #666666;
+}
+
+
+
+
+/* header 
+------------------------------------------- */
+header { 
+	height: 45px;
+	padding: 0 20px;
+	border-bottom: 0;
+	background: url(../common/forum_headBg.gif) top repeat-x;
+}
+header a.logo { 
+	margin-top: 13px; 
+	width: 124px; height: 22px; 
+	background-image: url(../common/forum_headLogo.gif); 
+}
+header .hmenu { margin-top: 10px; }
+header .hmenu a { font-size: 11px; font-family: "돋움", dotum, sans-serif; }
+header a.memo em, header a.notice em { top: -15px; }
+
+header .hmenu .favorite { display: none; }
+
+
+/* nav 
+------------------------------------------- */
+.forumNewNav {
+	height: 39px;	
+	background: url(../common/forum_navBg.gif) top repeat-x;
+}
+.bookmarkMenu { 
+	float: left; 
+	width: 140px;
+	height: 39px;	
+	background: #383736;
+}
+
+
+.leftTopNavi li a {
+	display:block;
+    background:url('../forum/wow/wow_left_top.jpg') no-repeat;
+    width:140px;
+    height:21px;
+}
+
+#leftTopNavi_title {
+    height:51px;
+    background:url('../forum/wow/wow_left_top_title.jpg') no-repeat;
+}
+
+#leftTopNavi_02 a {
+    background-position:0 -21px;
+}
+#leftTopNavi_03 a {
+    background-position:0 -42px;
+}
+#leftTopNavi_04 a {
+    background-position:0 -63px;
+}
+#leftTopNavi_05 a {
+    background-position:0 -84px;
+}
+#leftTopNavi_06 a {
+    background-position:0 -105px;
+}
+#leftTopNavi_07 a {
+    background-position:0 -126px;
+}
+#leftTopNavi_08 a {
+    background-position:0 -147px;
+}
+#leftTopNavi_09 a {
+    background-position:0 -168px;
+}
+#leftTopNavi_10 a {
+    background-position:0 -189px;
+}
+
+#leftTopNavi_01 a:hover, #leftTopNavi_01 .on {
+    background-position:-140px 0;
+}
+#leftTopNavi_02 a:hover, #leftTopNavi_02 .on {
+    background-position:-140px -21px;
+}
+#leftTopNavi_03 a:hover, #leftTopNavi_03 .on {
+    background-position:-140px -42px;
+}
+#leftTopNavi_04 a:hover, #leftTopNavi_04 .on {
+    background-position:-140px -63px;
+}
+#leftTopNavi_05 a:hover, #leftTopNavi_05 .on {
+    background-position:-140px -84px;
+}
+#leftTopNavi_06 a:hover, #leftTopNavi_06 .on {
+    background-position:-140px -105px;
+}
+#leftTopNavi_07 a:hover, #leftTopNavi_07 .on {
+    background-position:-140px -126px;
+}
+#leftTopNavi_08 a:hover, #leftTopNavi_08 .on {
+    background-position:-140px -147px;
+}
+#leftTopNavi_09 a:hover, #leftTopNavi_09 .on {
+    background-position:-140px -168px;
+}
+#leftTopNavi_10 a:hover, #leftTopNavi_10 .on {
+    background-position:-140px -189px;
+}
+
+#leftTopNavi_titleBottom {
+    height:9px;
+    background:url('../forum/wow/leftTopBottom.jpg') no-repeat;
+}
+
+
+.leftMiddleNavi_class li a {
+    display:block;
+    background:url('../forum/wow/wow_left_class.jpg') no-repeat;
+    width:140px;
+    height:21px;
+}
+
+#leftMiddleNavi_class_title {
+    height:37px;
+    background:url('../forum/wow/wow_left_class_title.jpg') no-repeat;
+}
+
+#leftMiddleNavi_class_01 a {
+    background-position:0 0;
+}
+#leftMiddleNavi_class_02 a {
+    background-position:0 -21px;
+}
+#leftMiddleNavi_class_03 a {
+    background-position:0 -42px;
+}
+#leftMiddleNavi_class_04 a {
+    background-position:0 -63px;
+}
+#leftMiddleNavi_class_05 a {
+    background-position:0 -84px;
+}
+#leftMiddleNavi_class_06 a {
+    background-position:0 -105px;
+}
+#leftMiddleNavi_class_07 a {
+    background-position:0 -126px;
+}
+#leftMiddleNavi_class_08 a {
+    background-position:0 -147px;
+}
+#leftMiddleNavi_class_09 a {
+    background-position:0 -168px;
+}
+#leftMiddleNavi_class_10 a {
+    background-position:0 -189px;
+}
+
+
+#leftMiddleNavi_class_01 a:hover, #leftMiddleNavi_class_01 .on  {
+    background-position: -140px 0;
+}
+#leftMiddleNavi_class_02 a:hover, #leftMiddleNavi_class_02 .on {
+    background-position: -140px  -21px;
+}
+#leftMiddleNavi_class_03 a:hover, #leftMiddleNavi_class_03 .on  {
+    background-position: -140px  -42px;
+}
+#leftMiddleNavi_class_04 a:hover, #leftMiddleNavi_class_04 .on  {
+    background-position: -140px  -63px;
+}
+#leftMiddleNavi_class_05 a:hover, #leftMiddleNavi_class_05 .on  {
+    background-position: -140px  -84px;
+}
+#leftMiddleNavi_class_06 a:hover, #leftMiddleNavi_class_06 .on  {
+    background-position: -140px  -105px;
+}
+#leftMiddleNavi_class_07 a:hover, #leftMiddleNavi_class_07 .on {
+    background-position: -140px -126px;
+}
+#leftMiddleNavi_class_08 a:hover, #leftMiddleNavi_class_08 .on {
+    background-position: -140px -147px;
+}
+#leftMiddleNavi_class_09 a:hover, #leftMiddleNavi_class_09 .on {
+    background-position: -140px -168px;
+}
+#leftMiddleNavi_class_10 a:hover, #leftMiddleNavi_class_10 .on {
+    background-position: -140px -189px;
+}
+
+
+#leftMiddleNavi_titleBottom {
+    height:9px;
+    background:url('../forum/maple/leftTopBottom.jpg') no-repeat;
+}
+
+/* -- server --*/
+
+.server li, .server_pvp li {
+	float:left;
+}
+
+.forumNewLeft .forumBright .server {
+	margin-bottom: 20px;
+}
+
+.forumNewLeft .forumBright .server li a {
+    display:block;
+    background:url('../forum/wow/wow_server_1.jpg') no-repeat;
+    width:50px;
+    height:14px;
+	line-height: 14px;
+	text-indent: -5000em;
+}
+
+.forumNewLeft .forumBright .server_pvp li a {
+    display:block;
+    background:url('../forum/wow/wow_server_2.jpg') no-repeat;
+    width:50px;
+    height:14px;
+	line-height: 14px;
+	text-indent: -5000em;
+}
+
+#server_title {
+	background:url('../forum/wow/wow_server_title1.jpg') no-repeat;
+	height: 45px;
+	text-indent: -5000em;
+}
+
+#server_01 a {
+	margin: 0 0 0 20px;
+	background-position: -20px 0;
+}
+
+#server_02 a {
+	background-position: -76px 0;
+}
+
+#server_03 a {
+	margin: 0 0 0 20px;
+	background-position: -20px -16px;
+}
+
+#server_04 a {
+	background-position: -76px -16px;
+}
+
+#server_05 a {
+	margin: 0 0 0 20px;
+	background-position: -20px -32px;
+}
+
+#server_01 a:hover, #server_01 .on {
+	margin: 0 0 0 20px;
+	background-position: -160px 0;
+}
+
+#server_02 a:hover, #server_02 .on {
+	background-position: -217px 0;
+}
+
+#server_03 a:hover, #server_03 .on {
+	margin: 0 0 0 20px;
+	background-position: -160px -16px;
+}
+
+#server_04 a:hover, #server_04 .on {
+	background-position: -217px -16px;
+}
+
+#server_05 a:hover, #server_05 .on {
+	margin: 0 0 0 20px;
+	background-position: -160px -32px;
+}
+
+#server_title1 {
+	background:url('../forum/wow/wow_server_title2.jpg') no-repeat;
+	height: 19px;
+	text-indent: -5000em;
+}
+
+#server_pvp_01 a {
+	width:56px;
+	margin: 0 0 0 20px;
+	background-position: -20px 0;
+}
+
+#server_pvp_02 a {
+	background-position: -76px 0;
+}
+
+#server_pvp_03 a {
+	width:56px;
+	margin: 0 0 0 20px;
+	background-position: -20px -16px;
+}
+
+#server_pvp_04 a {
+	background-position: -76px -16px;
+}
+
+#server_pvp_05 a {
+	width:56px;
+	margin: 0 0 0 20px;
+	background-position: -20px -32px;
+}
+
+#server_pvp_06 a {
+	background-position: -76px -32px;
+}
+
+#server_pvp_07 a {
+	width:56px;
+	margin: 0 0 0 20px;
+	background-position: -20px -48px;
+}
+
+#server_pvp_08 a {
+	background-position: -76px -48px;
+}
+
+#server_pvp_09 a {
+	width:56px;
+	margin: 0 0 0 20px;
+	background-position: -20px -64px;
+}
+
+#server_pvp_10 a {
+	background-position: -76px -64px;
+}
+
+#server_pvp_11 a {
+	width:56px;
+	margin: 0 0 0 20px;
+	background-position: -20px -80px;
+}
+
+#server_pvp_12 a {
+	background-position: -76px -80px;
+}
+
+#server_pvp_13 a {
+	width:56px;
+	margin: 0 0 0 20px;
+	background-position: -20px -96px;
+}
+
+#server_pvp_14 a {
+	background-position: -76px -96px;
+}
+
+#server_pvp_15 a {
+	width:56px;
+	margin: 0 0 0 20px;
+	background-position: -20px -112px;
+}
+
+#server_pvp_16 a {
+	background-position: -76px -112px;
+}
+
+#server_pvp_17 a {
+	width:56px;
+	margin: 0 0 0 20px;
+	background-position: -20px -128px;
+}
+
+#server_pvp_18 a {
+	background-position: -76px -128px;
+}
+
+#server_pvp_19 a {
+	width:56px;
+	margin: 0 0 0 20px;
+	background-position: -20px -144px;
+}
+
+#server_pvp_20 a {
+	background-position: -76px -144px;
+}
+
+#server_pvp_21 a {
+	width:56px;
+	margin: 0 0 0 20px;
+	background-position: -20px -160px;
+}
+
+#server_pvp_22 a {
+	background-position: -76px -160px;
+}
+
+#server_pvp_23 a {
+	width:56px;
+	margin: 0 0 0 20px;
+	background-position: -20px -176px;
+}
+
+#server_pvp_24 a {
+	background-position: -76px -176px;
+}
+
+#server_pvp_25 a {
+	width:56px;
+	margin: 0 0 0 20px;
+	background-position: -20px -192px;
+}
+
+#server_pvp_26 a {
+	background-position: -76px -192px;
+}
+
+#server_pvp_27 a {
+	width:56px;
+	margin: 0 0 0 20px;
+	background-position: -20px -208px;
+}
+
+#server_pvp_28 a {
+	background-position: -76px -208px;
+}
+
+#server_pvp_29 a {
+	width:56px;
+	margin: 0 0 0 20px;
+	background-position: -20px -224px;
+}
+
+#server_pvp_30 a {
+	background-position: -76px -224px;
+}
+
+#server_pvp_01 a:hover, #server_pvp_01 .on {
+	margin: 0 0 0 20px;
+	background-position: -160px 0;
+}
+
+#server_pvp_02 a:hover, #server_pvp_02 .on {
+	background-position: -217px 0;
+}
+
+#server_pvp_03 a:hover, #server_pvp_03 .on {
+	margin: 0 0 0 20px;
+	background-position: -160px -16px;
+}
+
+#server_pvp_04 a:hover, #server_pvp_04 .on {
+	background-position: -217px -16px;
+}
+
+#server_pvp_05 a:hover, #server_pvp_05 .on {
+	margin: 0 0 0 20px;
+	background-position: -160px -32px;
+}
+
+#server_pvp_06 a:hover, #server_pvp_06 .on {
+	background-position: -217px -32px;
+}
+
+#server_pvp_07 a:hover, #server_pvp_07 .on {
+	margin: 0 0 0 20px;
+	background-position: -160px -48px;
+}
+
+#server_pvp_08 a:hover, #server_pvp_08 .on {
+	background-position: -217px -48px;
+}
+
+#server_pvp_09 a:hover, #server_pvp_09 .on {
+	margin: 0 0 0 20px;
+	background-position: -160px -64px;
+}
+
+#server_pvp_10 a:hover, #server_pvp_10 .on {
+	background-position: -217px -64px;
+}
+
+#server_pvp_11 a:hover, #server_pvp_11 .on {
+	margin: 0 0 0 20px;
+	background-position: -160px -80px;
+}
+
+#server_pvp_12 a:hover, #server_pvp_12 .on {
+	background-position: -217px -80px;
+}
+
+#server_pvp_13 a:hover, #server_pvp_13 .on {
+	margin: 0 0 0 20px;
+	background-position: -160px -96px;
+}
+
+#server_pvp_14 a:hover, #server_pvp_14 .on{
+	background-position: -217px -96px;
+}
+
+#server_pvp_15 a:hover, #server_pvp_15 .on {
+	margin: 0 0 0 20px;
+	background-position: -160px -112px;
+}
+
+#server_pvp_16 a:hover, #server_pvp_16 .on {
+	background-position: -217px -112px;
+}
+
+#server_pvp_17 a:hover, #server_pvp_17 .on {
+	margin: 0 0 0 20px;
+	background-position: -160px -128px;
+}
+
+#server_pvp_18 a:hover, #server_pvp_18 .on {
+	background-position: -217px -128px;
+}
+
+#server_pvp_19 a:hover, #server_pvp_19 .on {
+	margin: 0 0 0 20px;
+	background-position: -160px -144px;
+}
+
+#server_pvp_20 a:hover, #server_pvp_20 .on {
+	background-position: -217px -144px;
+}
+
+#server_pvp_21 a:hover, #server_pvp_21 .on {
+	margin: 0 0 0 20px;
+	background-position: -160px -160px;
+}
+
+#server_pvp_22 a:hover, #server_pvp_22 .on {
+	background-position: -217px -160px;
+}
+
+#server_pvp_23 a:hover, #server_pvp_23 .on {
+	margin: 0 0 0 20px;
+	background-position: -160px -176px;
+}
+
+#server_pvp_24 a:hover, #server_pvp_24 .on {
+	background-position: -217px -176px;
+}
+
+#server_pvp_25 a:hover, #server_pvp_25 .on {
+	margin: 0 0 0 20px;
+	background-position: -160px -192px;
+}
+
+#server_pvp_26 a:hover, #server_pvp_26 .on {
+	background-position: -217px -192px;
+}
+
+#server_pvp_27 a:hover, #server_pvp_27 .on {
+	margin: 0 0 0 20px;
+	background-position: -160px -208px;
+}
+
+#server_pvp_28 a:hover, #server_pvp_28 .on {
+	background-position: -217px -208px;
+}
+
+#server_pvp_29 a:hover, #server_pvp_29 .on {
+	margin: 0 0 0 20px;
+	background-position: -160px -224px;
+}
+
+#server_pvp_30 a:hover, #server_pvp_30 .on {
+	background-position: -217px -224px;
+}
+
+.leftMiddleNavi_pvp li a {
+    display:block;
+    background:url('../forum/wow/wow_left_pvp.jpg') no-repeat;
+    width:140px;
+    height:21px;
+}
+
+#leftMiddleNavi_pvp_title {
+    height:37px;
+    background:url('../forum/wow/wow_left_pvp_title.jpg') no-repeat;
+}
+
+#leftMiddleNavi_pvp_01 a {
+    background-position:0 0;
+}
+#leftMiddleNavi_pvp_02 a {
+    background-position:0 -21px;
+}
+#leftMiddleNavi_pvp_03 a {
+    background-position:0 -42px;
+}
+#leftMiddleNavi_pvp_04 a {
+    background-position:0 -63px;
+}
+
+
+#leftMiddleNavi_pvp_01 a:hover, #leftMiddleNavi_pvp_01 .on  {
+    background-position: -140px 0;
+}
+#leftMiddleNavi_pvp_02 a:hover, #leftMiddleNavi_pvp_02 .on {
+    background-position: -140px  -21px;
+}
+#leftMiddleNavi_pvp_03 a:hover, #leftMiddleNavi_pvp_03 .on  {
+    background-position: -140px  -42px;
+}
+#leftMiddleNavi_pvp_04 a:hover, #leftMiddleNavi_pvp_04 .on {
+    background-position: -140px  -63px;
+}
+
+
+
+#leftFootNavi_title {
+    height:46px;
+    background:url('../forum/wow/wow_left_foot_title.jpg') no-repeat;
+}
+
+.leftFootNavi li a {
+    display:block;
+    background:url('../forum/wow/wow_left_foot.jpg') no-repeat;
+    width:140px;
+    height:21px;
+}
+
+#leftFootNavi_01 a {
+    background-position:0 0;
+}
+#leftFootNavi_02 a {
+    background-position:0 -21px;
+}
+#leftFootNavi_03 a {
+    background-position:0 -42px;
+}
+#leftFootNavi_04 a {
+    background-position:0 -63px;
+}
+#leftFootNavi_05 a {
+    background-position:0 -84px;
+}
+
+
+
+#leftFootNavi_01 a:hover, #leftFootNavi_01 .on {
+    background-position:-140px 0;
+}
+#leftFootNavi_02 a:hover, #leftFootNavi_02 .on {
+    background-position:-140px -21px;
+}
+#leftFootNavi_03 a:hover, #leftFootNavi_03 .on {
+    background-position:-140px -42px;
+}
+#leftFootNavi_04 a:hover, #leftFootNavi_04 .on {
+    background-position:-140px -63px;
+}
+#leftFootNavi_05 a:hover, #leftFootNavi_05 .on {
+    background-position:-140px -84px;
+}
+
+
+
+.favorite { margin: 9px auto 0 auto; position:relative; width:110px; height: 19px; z-index:10; background: url(../common/forum_buttonBg.gif) 0 0 no-repeat;}
+
+.favorite .favoriteOpen { display:inline-block; width:110px; padding:0 8px; line-height:20px; background:url(../common/forum_buttonDown.gif) 70px 3px no-repeat; text-align:left; }
+.favorite .favoriteTop { position:relative; display:inline-block; width:110px; zoom:1; line-height:20px; }
+.favorite .favoriteTop a.bestLink { display:inline-block; width:94px; padding:0 8px; line-height:20px; text-align:left; font-size: 11px; font-family: "돋움", dotum, sans-serif; }
+.favorite .favoriteTop a.bestLink:hover { color:#ff5000; }
+.favorite .favoriteTop .button { position:absolute; left:90px; top:1px; *top:-1px; padding:2px 2px 0; margin:0; *overflow:visible; background:transparent; border:0 none; cursor:pointer; z-index:2;}
+
+.favoriteList { display:none; position:absolute; top:17px; left:0; width:100px; padding: 5px 5px 3px 5px; background:#E6E6E6; font-size: 11px; font-family: "돋움", dotum, sans-serif; }
+.favoriteList li { position:relative; z-index:1; height:18px; }
+.favoriteList li a.item{ display:block; width:74px; font-size: 11px; padding-left: 3px; font-family: "돋움", dotum, sans-serif; }
+.favoriteList li a:hover{ color:#ff5000; }
+
+.favoriteList a.iconUpS { position:absolute; top:2px; left:73px; z-index:2; visibility:hidden; }
+.favoriteList a.iconDeleteS { position:absolute; top:2px; left:86px; z-index:2; visibility:hidden; }
+.favoriteList li.input { padding:3px 0 2px 0; text-align:right; height:42px; }
+.favoriteList #favoriteAdd { display:block; width:94px; margin:0 auto 3px; padding:1px 0 3px 2px; font-size:11px; font-family:dotum, sans-serif; line-height:1.3; vertical-align:top; color:#999; }
+.favoriteList button { }
+
+.defaultMenu { 
+	float: right; 
+	width: 817px;
+	padding: 12px 23px 0 0;
+	text-align: center;
+}
+.defaultMenu a { 
+	margin-left: 23px;
+}
+
+
+/* aside Left 
+------------------------------------------- */
+.forumNewLeft {
+	float: left;
+	width: 140px;
+	text-indent:-5000em;
+}
+.forumNewLeft section h4 {
+	padding: 0 0 5px 20px;
+	margin-top: 10px;
+}
+.forumNewLeft section ul {
+ overflow: hidden; zoom: 1; 
+}
+
+.forumNewLeft section li img {
+ _vertical-align: top;
+}
+
+.forumNewLeft .forumDark {
+	background: #454441;
+	height:281px;
+}
+
+
+.forumNewLeft .forumBright {
+	background: #e6e6e6;
+}
+
+.forumNewLeft .forumBright dl {
+	width: 100px;
+	margin: 0 auto;
+}
+.forumNewLeft .forumBright .forumBrightLine {
+	color: both;
+	width: 100px;
+	margin: 15px auto;
+	height: 1px;
+	border-top: 1px solid #c9c8c5;
+}
+
+.forumNewLeft .forumGray {
+	background: #E555452;
+	height : 250px;
+}
+.forumNewLeft .forumGray h3 {
+	height: 26px;
+	padding: 10px 0 0 20px;
+	margin-bottom: 0;
+	background: url(../common/forum_h3GrayBg.gif) top repeat-x;
+}
+
+
+
+
+
+
+/* aside Right 
+------------------------------------------- */
+.forumNewRight {
+	float: right;
+	width: 200px;
+	overflow: hidden; zoom: 1; 
+}
+.forumNewRight section {
+	width: 170px;
+	margin: 0 auto;
+	padding-top: 20px;
+}
+.forumNewRight a {
+	color: #666;
+}
+.forumNewRight a:hover {
+	color: #000;
+}
+.forumNewRight .forumBrightLine {
+	color: both;
+	width: 170px;
+	margin: 0 auto;
+	height: 1px;
+	border-bottom: 1px solid #dcdcdc;
+	padding-top: 20px;
+}
+
+.forumNewRight section .forumReport li { padding: 0; }
+.forumNewRight section .forumReport li a { width: 140px; max-width: 140px; color: #666666; }
+.forumNewRight section .forumReport li.new a { font-weight: normal; }
+
+.forumNewRight .tabNormal { }
+.forumNewRight .tabNormal li { width:83px; }
+.forumNewRight .tabNormal li a { font-weight: normal; }
+.forumNewRight .tabNormal li.on { background:url(../common/bg_tabForumNormal.gif) top repeat-x; }
+.forumNewRight .tabNormal li.on a { font-weight: bold; color:#000; }
+
+
+/* 주간 게임 랭킹 */
+
+#gameRanking{
+	height: 270px;
+}
+
+#gameRanking .rankingInfoBox {
+	border: 1px solid #BDBDBD;
+	padding: 3px 0px;
+}
+
+#gameRanking .title, #gameRanking .info {
+	display: inline;
+}
+#gameRanking .title {
+	font-weight: bold;
+	color: #000000;
+	padding: 0px 8px;
+}
+
+#gameRanking .info {
+	font-size: 11px;
+}
+
+#gameRanking .rankingList {
+	margin-top: 10px;
+}
+
+#gameRanking .rankingList li {
+	line-height: 1.6;
+}
+
+#gameRanking .rankingList .number {
+	border: 1px solid #DFDFDF;
+	color: #3D3D3D;
+	font-weight: bold;
+	display: inline-block;
+	float: left;
+	font-family: tahoma, verdana, sans-serif;
+	font-size: 8px;
+	height: 12px;
+	margin-right: 5px;
+	padding: 1px 0px;
+	text-align: center;
+	text-indent: 1px;
+	line-height: 11px;
+	width: 14px;
+}
+
+#gameRanking .rankingList .topRanking .number {
+	color: #FE0000;
+}
+
+#gameRanking .rankingList .rankGame {
+	display: inline-block;
+	float: left;
+	width: 145px;
+	color: #000000;
+}
+
+/* 신규댓글 */
+.forumNewRight .forumComment {}
+.forumNewRight .forumComment li {
+	overflow: hidden; zoom: 1; 
+	height: 20px;
+	padding-left: 8px;
+	background:url(../common/bullet_liGray.gif) 0 7px no-repeat; 
+}
+
+
+/* 멀티미디어 */
+.forumMulti,
+.forumMulti ul { 
+	overflow: hidden; zoom: 1; 
+}
+.forumMulti li { 
+	float: left; 
+}
+.forumNewRight .forumMulti li { 
+	width: 70px; 
+	padding-right: 15px;
+}
+.forumMainSection .forumMulti li { 
+	width: 135px; 
+	padding-right: 5px;
+}
+.forumMulti li .pic { 
+	margin-bottom: 5px;
+}
+.forumMulti li .title { 
+	font-weight: bold;
+}
+.forumNewRight .forumMulti li .pic { 
+	width: 70px; 
+	height: 60px;
+}
+.forumMainSection .forumMulti li .pic { 
+	width: 135px; 
+	height: 105px;
+}
+.forumMulti li em { 
+	color: #ff5000;
+	font-size: 9px; 
+	font-family: Verdana, Sans-serif; 
+}
+
+
+/* TODAY 플래이포럼인 */
+.forumToday,
+.forumToday ul { 
+	overflow: hidden; zoom: 1; 
+}
+.forumToday li { 
+	padding-bottom: 5px;
+	overflow: hidden; zoom: 1; 
+}
+.forumToday li .pic { 
+	float: left;
+	width: 70px; 
+	height: 60px;
+}
+.forumToday li .cont { 
+	float: right;
+	width: 90px; 
+}
+.forumToday li .cont { 
+	float: right;
+}
+.forumNewRight .forumToday li .cont { 
+	width: 90px; 
+}
+.forumMainSection .forumToday li .cont { 
+	width: 200px; 
+}
+.forumToday li .cont img { 
+	float: left;
+}
+.forumToday li .cont span { 
+	float: left;
+	display: block;
+	color: #666;
+	padding-left: 5px;
+}
+.forumNewRight .forumToday li .cont span { 
+	width: 60px;
+}
+.forumMainSection .forumToday li .cont span { 
+	width: 170px;
+}
+.forumToday li .cont .detail { 
+	overflow: hidden; zoom: 1; 
+	clear:both; 
+	height: 35px;
+	padding-top: 5px;
+}
+
+
+/* 검색 */
+#wowSearch {
+	position:relative;
+}
+#wowSearch .searchMore {
+	position:absolute; 
+	left: 16px; top: 72px;
+}
+#wowSearch .searchMore .input {
+	width: 100px;
+	height: 17px;
+	margin-right: -4px;
+	padding: 3px 0 0 5px;
+	font-size: 12px;
+	border: 0;
+	border-top: 1px solid #A1A1A1;
+	border-left: 1px solid #A1A1A1;
+}
+
+
+
+/* Paging  
+-------------------------------------------------- */
+.forumNewRight .paging { 
+	clear:both; 
+	overflow: hidden; zoom: 1; 
+	text-align: left; 
+	margin: 0 0 0 -2px; 
+	padding: 10px 0 0 0; 
+}
+.forumNewRight .paging a { display:inline-block; border: 0; border-left: 1px solid #D2D2D2; padding: 0 3px 0 8px; background: none; }
+.forumNewRight .paging a:hover { color:#FF5000; }
+.forumNewRight .paging a.on { color:#FF5000; font-weight: bold; }
+
+
+
+/* forum main
+------------------------------------------- */
+
+.forumMainSection {
+	overflow: hidden; zoom: 1; margin-bottom:20px;
+}
+.forumMainSection .todaySection {
+	float: left;
+	width: 280px;
+}
+.forumMainSection .pfTalk {
+	float: left;
+	width: 280px;
+	margin-bottom:20px;
+}
+.forumMainSection .pfTalk .forumMulti ul {
+	margin-bottom: 10px;
+}
+
+.forumMainSection .pfNews {
+	float: right;
+	width: 280px;
+}
+
+.forumMainSection .pfNews .forumMulti ul {
+	margin-bottom: 10px;
+}
+
+.pfNews .title a{
+	color: #000000;
+}
+
+.forumMainSection .photoNmovie {
+	float:left;
+	width:280px;
+}
+
+
+/* cube */
+#cubeDisplay { height:280px; background:#1b1b1b; }
+.cubeMask { overflow:hidden; width:540px; height:245px; background:#1b1b1b; }
+.cube2 { overflow:hidden; width:945px; margin:0; padding:0; list-style:none; }
+.cube2 li { float:left; width:270px; height:245px; }
+.cube2 li a { color:#d26f1f; zoom:1; }
+.cube2 li .img { float:left; overflow:hidden; zoom:1; }
+.cube2 li .img img { float:left; overflow:hidden; width:270px; }
+.cube2 li a:hover span.img { border:5px solid #a73810;}
+.cube2 li a:hover span.img img { margin:-5px; }
+.cube2 li span.txt { display:block; clear:left; padding:8px 18px 0 12px; font-size:12px; font-family:dotum, sans-serif; }
+
+.cube2Paging { width:540px; padding-top:8px; text-align:center; }
+.cube2Paging li { display:inline; }
+.cube2Paging li button { *overflow:visible; width:16px; height:13px; margin:0 2px; padding:0; background:url(../common/cubePaging.gif) no-repeat; border:0 none; cursor:pointer; font-size:10px; line-height:1; }
+.cube2Paging li.on button {cursor:default;background-position:0 -13px; }
+/* 
+.cube2Paging li button.paging2 {background-position:-27px 0;}
+.cube2Paging li button.paging3 {background-position:-54px 0;}
+.cube2Paging li button.paging4 {background-position:-81px 0;}
+.cube2Paging li button.paging5 {background-position:-108px 0;}
+.cube2Paging li button.paging6 {background-position:-135px 0;}
+
+.cube2Paging li.on button {cursor:default;}
+.cube2Paging li.on button.paging1 {background-position:0 -13px;}
+.cube2Paging li.on button.paging2 {background-position:-27px -13px;}
+.cube2Paging li.on button.paging3 {background-position:-54px -13px;}
+.cube2Paging li.on button.paging4 {background-position:-81px -13px;}
+.cube2Paging li.on button.paging5 {background-position:-108px -13px;}
+.cube2Paging li.on button.paging6 {background-position:-135px -13px;}
+*/
+
+/* froum Photo
+------------------------------------------- */
+#photoLayout {}
+
+#photoLayout #container {
+ background-image: url(../common/forum_contentBg2.gif);
+}
+
+#photoLayout .forumNewRight {
+ display: none;
+}
+
+#photoLayout #contents { 
+ float: right;
+ width: 800px;
+}
+
+#gameNews {
+	height: 330px;
+}
+
+#gameNews a {
+	color: #000000;
+}
+
+#gameNews .mainTab {
+	height: 45px;
+}
+
+#gameNews .mainTab a {
+	display:inline-block;
+	background:url('../forum/gameNewsTab.png') no-repeat;
+	float:left;
+	height:30px;
+    margin:0;
+    padding:0;
+}
+
+#gameNews .mainTab .on a {
+	background-position-y: -30px; 
+}
+
+#gameNews .mainTab li {
+	display: inline;
+}
+
+#gameNews .newsTab1 a {
+	width: 71px;
+	background-position:0px 0px;
+}
+
+#gameNews .newsTab2 a {
+	width: 50px;
+	background-position:-71px 0px;
+}
+
+#gameNews .newsTab3 a {
+	width: 59px;
+	background-position:-121px 0px;
+}
+
+#gameNews .newsTab4 a {
+	width: 41px;
+	background-position:-180px 0px;
+}
+
+#gameNews .newsTab5 a {
+	width: 69px;
+	background-position:-221px 0px;
+}
+
+#gameNews .newsTab6 a {
+	width: 60px;
+	background-position:-290px 0px;
+}
+
+#gameNews .newsTab7 a {
+	width: 49px;
+	background-position:-350px 0px;
+}
+
+#gameNews .newsTab8 a {
+	width: 64px;
+	background-position:-399px 0px;
+}
+
+#gameNews .newsTab9 a {
+	width: 59px;
+	background-position:-463px 0px;
+}
+
+#gameNews .newsTab10 a {
+	width: 78px;
+	background-position:-522px 0px;
+}
+
+#gameNews .mainNews .mainNewsImgArea {
+	float: left;
+	width: 290px;
+	height: 235px;
+	border-right:1px dotted;
+	border-color: #999999;	
+}
+
+#gameNews .mainNews .mainNewsImgDesc {
+	font-weight: bold;
+	text-align: center;
+}
+
+#gameNews .mainNews .subNewsImgArea {
+	float: right;
+	width: 285px;
+	height: 235px;
+}
+
+#gameNews .mainNews .subNewsTopArea {
+	height:100px;
+}
+
+#gameNews .mainNews .subNewsImgDesc {
+	float:right; 
+	width: 140px;
+	height: 100px;
+}
+
+#gameNews .mainNews .subNewsImgTitle {
+	font-weight: bold;
+	overflow: hidden;
+	height:20px;
+}
+
+#gameNews .mainNews .subNewsImgContents {
+	overflow: hidden;
+	height: 86px;
+}
+
+#gameNews .mainNews .sectionNewsList li {
+	background:url('http://image.playforum.net/common/bullet_liGray.gif') no-repeat;
+	background-position-y: 8px;
+	display: list-item;
+	text-indent: 10px;
+}
+
+#hotNews .pfBestNewsList a {
+	color: #000000;
+}
+
+#hotNews .pfBestNewsList li {
+	background:url('http://image.playforum.net/common/bullet_liGray.gif') no-repeat;
+	background-position-y: 8px;
+	display: list-item;
+	text-indent: 10px;
+	line-height:1.8;
+}
