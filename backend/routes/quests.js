@@ -10,8 +10,24 @@ function readFolder(folder, area){
   fs.readdirSync(folder).forEach(file => {
     var path = `${folder}${file}`
     var obj = { name : file , path : path , relPath : path.replace(__dirname,''), area : area}
+    console.log(path)
     if(isDir(path)){
-      obj.type = "dir"
+      obj.type = "dir"      
+    }else{
+      obj.type = "file"
+    }   
+    list.push(obj);
+  });
+  return list;
+}
+function readClassQuestFolder(folder, area){
+  
+  var list = [];
+  fs.readdirSync(folder).forEach(file => {
+    var path = `${folder}/${file}`
+    var obj = { name : file , path : path , relPath : path.replace(__dirname,''), area : area}   
+    if(isDir(path)){
+      obj.type = "dir"      
     }else{
       obj.type = "file"
     }   
@@ -20,6 +36,19 @@ function readFolder(folder, area){
   return list;
 }
 
+router.get('/classQuestlist', function (req, res) {
+  var allList = []
+  var questFolder = `${folder}와우섬게 직업퀘`
+  var list = readClassQuestFolder(questFolder)
+  list.forEach(dir => {
+    var area = dir
+    console.log(`${folder}${dir.name}`)
+    if(dir.type == 'dir'){            
+        area.children =  readClassQuestFolder(`${questFolder}/${dir.name}`,dir.name).filter(quest => quest.type == 'file')             
+    }
+  });
+  res.json(list);
+});
 router.get('/list', function (req, res) {
   
   var allList = []
@@ -27,8 +56,10 @@ router.get('/list', function (req, res) {
   list.forEach(dir => {
     var area = dir
     if(dir.type == 'dir'){
-      area.children =  readFolder(`${folder}/${dir.name}`,dir.name)
-      allList.push(area);
+      if(dir.name != '와우섬게 직업퀘'){
+        area.children =  readFolder(`${folder}/${dir.name}`,dir.name)
+        allList.push(area);
+      }
     }
   })
   res.json(allList);

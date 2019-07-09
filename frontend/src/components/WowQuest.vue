@@ -1,33 +1,16 @@
 <template>
-  <div>
-  
+  <v-app
+    id="inspire"
+  >
     <v-navigation-drawer
+      v-model="drawer"
+      fixed
+      clipped
       app
-      dark
-      floating
-      mobile-break-point="991"
-      permanent
-      width="400"
+      
     >
-      <v-card
-
-        class="mx-auto"
-      >
-        <v-sheet class="pa-3 primary lighten-2">
-          <v-text-field
-            v-model="search"
-            label="퀘스트명을 입력해주세요."
-            dark
-            flat
-            solo-inverted
-            hide-details
-            clearable
-            clear-icon="mdi-close-circle-outline"
-            @keyup.enter="searchQuest"
-          />
-
-        </v-sheet>
-        <v-card-text>
+    <h1  class="primary white--text pa-2" >일반 퀘스트</h1>     
+    <div class="pa-3">
           <v-treeview
             v-if="items.length > 0"
             :items="items"
@@ -53,16 +36,72 @@
             </template>
 
           </v-treeview>
-        </v-card-text>
-      </v-card>
+    </div>
+          <h1  class="primary white--text pa-2" >직업 퀘스트</h1>     
+     <div class="pa-3">
+          <v-treeview
+            v-if="classQuestlist.length > 0"
+            :items="classQuestlist"
+            :open.sync="openClass"
+            open-on-click
+          >
+            <template v-slot:label="{ item }">
+              <a
+                v-if="!item.children"
+                @click="getClassQuest(item)"
+              >{{ item.name | fileFilter }} </a>
+              <a
+                v-else
+              >
+                <span :color="item.name.indexOf(search) > -1 ? 'blue' : 'red'">
+                  {{ item.name | fileFilter }}
+                </span>
+              </a>
+            </template>
+
+          </v-treeview>
+     
+
+    </div>
     </v-navigation-drawer>
-    <v-layout
+    <v-toolbar
+      color="primary"
+      fixed
+      dark
+      clipped-left
+      app
+    >
+      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-icon class="mx-3">fab fa-youtube</v-icon>
+      <v-toolbar-title class="mr-5 align-center">
+        <span class="title">WoW Original Quest</span>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-layout row align-center style="max-width: 650px">
+          <v-text-field
+            v-model="search"
+            label="퀘스트명을 입력해주세요."
+            append-icon="search"
+            flat
+            solo-inverted
+            single-line
+            hide-details
+            clearable
+            clear-icon="mdi-close-circle-outline"
+            @keyup.enter="searchQuest"
+          />
+      
+      </v-layout>
+    </v-toolbar>
+    <v-content pa-0 ma-0>
+      <v-container fill-height>
+        <v-layout
       wrap
 
     >
 
-      <v-flex px-3 >
-        <v-sheet class="pa-4 align-center primary lighten-2">
+      <v-flex px-3 v-if="!isClassShow">
+        <v-sheet class="pa-4 align-center primary lighten-2" dark>
           {{ area }}
         </v-sheet>
         <v-card
@@ -72,32 +111,43 @@
         >
           <img
             :id="quest.name"
-            :src="`/static/와우오리퀘스트/${area}/${quest.name}`"
-            style="width:540px;padding:20px 0"
+            :src="`${devServer}/static/와우오리퀘스트/${area}/${quest.name}`"
+            :style="`width:${imageWidth};padding:20px 0`"
         ></v-card>
       </v-flex>
+      <v-flex px-3 v-if="isClassShow">
+        <iframe :src="classQuestURL" style="display:block; width:100%; height: 100vh"></iframe>
+      </v-flex>
     </v-layout>
+      </v-container>
+    </v-content>
+  </v-app>
   
-  </div>
 </template>
 
 <script>
 export default {
   filters: {
     fileFilter (value) {
-      return value.replace('.jpg', '').replace('.png', '')
+      return value.replace('.jpg', '').replace('.png', '').replace('.htm', '')
     }
   },
   data () {
     return {
+      drawer: null,
+      isClassShow: true,
+      classQuestURL: '',
       show: false,
       open: [],
+      openClass: [],
       search: null,
       caseSensitive: false,
       list: [],
       items: [],
       area: null,
+      classList: [],
       questList: [],
+      classQuestlist: [],
       headers: [
         {
           sortable: false,
@@ -108,6 +158,18 @@ export default {
     }
   },
   computed: {
+    imageWidth () {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs': return '100%'
+        case 'sm': return '400px'
+        case 'md': return '500px'
+        case 'lg': return '600px'
+        case 'xl': return '800px'
+      }
+    },
+    devServer () {
+      return ''
+    },
     filter () {
       return this.caseSensitive
         ? (item, search, textKey) => item[textKey].indexOf(search) > -1
@@ -119,8 +181,10 @@ export default {
     search (value) {
       if (value === null) {
         this.items = this.list.filter(obj => obj.type === 'dir')
+        this.classQuestlist = this.classList.filter(obj => obj.type === 'dir')
       } else if (value.length === 0) {
         this.items = this.list.filter(obj => obj.type === 'dir')
+        this.classQuestlist = this.classList.filter(obj => obj.type === 'dir')
       }
     }
   },
@@ -142,21 +206,42 @@ export default {
 
         return area.indexOf(keyword) > -1 || foundQuest.length > 0
       })
+      this.classQuestlist = this.classList.filter(obj => {
+        var area = obj.name
+        var questList = obj.children
+        var foundQuest = questList.filter(quest => {
+          return quest.name.indexOf(keyword) > -1
+        })
+        if (foundQuest.length > 0) {
+          obj.children = foundQuest
+        }
+
+        return area.indexOf(keyword) > -1 || foundQuest.length > 0
+      })
     },
     async getDirectory () {
       try {
-        var result = await this.$http.get(`/list`, {})
+        this.isClassShow = false
+        var result = await this.$http.get(`${this.devServer}/list`, {})
         this.list = result.data
-
         this.items = this.list.filter(obj => obj.type === 'dir')
+        result = await this.$http.get(`${this.devServer}/classQuestlist`, {})
+        this.classList = result.data
+        this.classQuestlist = this.classList.filter(obj => obj.type === 'dir')
       } catch (error) {
         console.log(error)
       }
     },
+    getClassQuest (item) {
+      this.isClassShow = true
+      var url = `${this.devServer}/static/와우오리퀘스트/와우섬게 직업퀘/${item.area}/${item.name}`
+      this.classQuestURL = url
+    },
     async getQuest (area, quest) {
       try {
+        this.isClassShow = false
         this.area = area
-        var result = await this.$http.get(`/list/${area}`, {})
+        var result = await this.$http.get(`${this.devServer}/list/${area}`, {})
         this.questList = result.data
         if (quest) {
           document.getElementById(quest).scrollIntoView()

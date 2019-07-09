@@ -6,6 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 
+// var Iconv = require('iconv').Iconv; 
+// var iconv = new Iconv('EUC-KR', 'UTF-8//TRANSLIT//IGNORE');
+
+
+
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 var movies = require('./routes/movies');
@@ -24,6 +30,15 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(function(req, res, next) {
+  if (/.*\.htm/.test(req.path)) {
+    
+   res.setHeader( 'content-type' ,'text/html; charset=euc-kr' );        
+    next()
+  }else{
+    next();
+  }
+});
 app.use(express.static(path.join(__dirname, 'public')));
 
 
