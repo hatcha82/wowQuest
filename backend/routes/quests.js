@@ -10,7 +10,6 @@ function readFolder(folder, area){
   fs.readdirSync(folder).forEach(file => {
     var path = `${folder}${file}`
     var obj = { name : file , path : path , relPath : path.replace(__dirname,''), area : area}
-    console.log(path)
     if(isDir(path)){
       obj.type = "dir"      
     }else{
