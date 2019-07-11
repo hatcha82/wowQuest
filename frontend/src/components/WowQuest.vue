@@ -9,40 +9,49 @@
       app
       
     >
-    <h1  class="primary white--text pa-2" >일반 퀘스트</h1>     
+    <h1  class="primary white--text pa-2" >일반 퀘스트</h1>         
     <div class="pa-3">
           <v-treeview
+          v-model="tree"
             v-if="items.length > 0"
             :items="items"
             :open.sync="open"
+            :multiple-active="false"
             open-on-click
           >
+            <template v-slot:prepend="{ item, active }">
+              <v-icon
+                v-if="!item.children"
+                :color="active ? 'primary' : ''"
 
-            <template v-slot:label="{ item }">
+              >
+              </v-icon>
+            </template>
+            <template v-slot:label="{ item, open }">
 
-              <a
+              <div
                 v-if="!item.children"
                 @click="getQuest(item.area,item.name)"
-              >{{ item.name | fileFilter }} </a>
-              <a
+              >{{ item.name | fileFilter }} </div>
+              <div
                 v-else
                 @click="getQuest(item.name)">
 
-                <span :color="item.name.indexOf(search) > -1 ? 'blue' : 'red'">
-                  {{ item.name | fileFilter }}
+                <span  :class="`${open ? 'primary--text' :''}`">
+             {{ item.name | fileFilter }}
                 </span>
-
-              </a>
+              </div>
             </template>
 
           </v-treeview>
     </div>
-          <h1  class="primary white--text pa-2" >직업 퀘스트</h1>     
+      <h1  class="primary white--text pa-2" >직업 퀘스트</h1>     
      <div class="pa-3">
           <v-treeview
             v-if="classQuestlist.length > 0"
             :items="classQuestlist"
             :open.sync="openClass"
+            
             open-on-click
           >
             <template v-slot:label="{ item }">
@@ -72,12 +81,10 @@
       app
     >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-icon class="mx-3">fab fa-youtube</v-icon>
-      <v-toolbar-title class="mr-5 align-center">
+      <v-toolbar-title class="mr-5 align-center hidden-sm-and-down">
         <span class="title">WoW Original Quest</span>
       </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-layout row align-center style="max-width: 650px">
+      <v-spacer class="hidden-sm-and-down"></v-spacer>
           <v-text-field
             v-model="search"
             label="퀘스트명을 입력해주세요."
@@ -87,19 +94,16 @@
             single-line
             hide-details
             clearable
-            clear-icon="mdi-close-circle-outline"
+            clear-icon="close"
             @keyup.enter="searchQuest"
           />
       
-      </v-layout>
     </v-toolbar>
     <v-content pa-0 ma-0>
       <v-container fill-height>
         <v-layout
       wrap
-
     >
-
       <v-flex px-3 v-if="!isClassShow">
         <v-sheet class="pa-4 align-center primary lighten-2" dark>
           {{ area }}
@@ -134,6 +138,8 @@ export default {
   },
   data () {
     return {
+      tree: [],
+      active: [],
       drawer: null,
       isClassShow: true,
       classQuestURL: '',
@@ -192,6 +198,10 @@ export default {
     this.getDirectory()
   },
   methods: {
+    reset () {
+      this.items = []
+      this.getDirectory()
+    },
     searchQuest () {
       var keyword = this.search
       this.items = this.list.filter(obj => {
@@ -228,6 +238,7 @@ export default {
         result = await this.$http.get(`${this.devServer}/classQuestlist`, {})
         this.classList = result.data
         this.classQuestlist = this.classList.filter(obj => obj.type === 'dir')
+        this.getQuest(this.items[0].name)
       } catch (error) {
         console.log(error)
       }
@@ -236,6 +247,10 @@ export default {
       this.isClassShow = true
       var url = `${this.devServer}/static/와우오리퀘스트/와우섬게 직업퀘/${item.area}/${item.name}`
       this.classQuestURL = url
+
+      if (this.$vuetify.breakpoint.name === 'xs') {
+        this.drawer = false
+      }
     },
     async getQuest (area, quest) {
       try {
@@ -245,6 +260,9 @@ export default {
         this.questList = result.data
         if (quest) {
           document.getElementById(quest).scrollIntoView()
+          if (this.$vuetify.breakpoint.name === 'xs') {
+            this.drawer = false
+          }
         }
       } catch (error) {
         console.log(error)
