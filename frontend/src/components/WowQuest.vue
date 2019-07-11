@@ -7,6 +7,7 @@
       fixed
       clipped
       app
+     
       
     >
     <h1  class="primary white--text pa-2" >일반 퀘스트</h1>         
@@ -29,7 +30,7 @@
             </template>
             <template v-slot:label="{ item, open }">
 
-              <div
+               <div class="questItem"
                 v-if="!item.children"
                 @click="getQuest(item.area,item.name)"
               >{{ item.name | fileFilter }} </div>
@@ -55,17 +56,17 @@
             open-on-click
           >
             <template v-slot:label="{ item }">
-              <a
+               <div class="questItem"
                 v-if="!item.children"
                 @click="getClassQuest(item)"
-              >{{ item.name | fileFilter }} </a>
-              <a
+              >{{ item.name | fileFilter }} </div>
+              <div
                 v-else
               >
                 <span :color="item.name.indexOf(search) > -1 ? 'blue' : 'red'">
                   {{ item.name | fileFilter }}
                 </span>
-              </a>
+              </div>
             </template>
 
           </v-treeview>
@@ -136,9 +137,9 @@
               data-ad-height  = "90"></ins> 
         </div> -->
        
-      <v-container fill-height wrap>
+      <v-container fill-height wrap :class="{'pa-0': $vuetify.breakpoint.smAndDown, 'pa-5': $vuetify.breakpoint.mdAndUp}">
         <v-layout wrap>
-          <v-flex px-3 v-if="!isClassShow">
+          <v-flex v-if="!isClassShow">
             <v-sheet class="pa-4 align-center primary lighten-2" dark>
               {{ area }}
             </v-sheet>
@@ -216,7 +217,7 @@ export default {
         case 'sm': return '400px'
         case 'md': return '500px'
         case 'lg': return '600px'
-        case 'xl': return '800px'
+        case 'xl': return '600px'
       }
     },
     devServer () {
@@ -310,6 +311,7 @@ export default {
         this.questList = result.data
         if (quest) {
           document.getElementById(quest).scrollIntoView()
+          window.scrollBy(0, -40)
           if (this.$vuetify.breakpoint.name === 'xs') {
             this.drawer = false
           }
@@ -322,6 +324,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scope>
+  .questItem{
+     width:200px;margin-bottom:10px;margin-left:-40px
+  }
 </style>
