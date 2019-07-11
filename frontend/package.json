@@ -15,6 +15,7 @@
   "dependencies": {
     "axios": "^0.19.0",
     "vue": "^2.5.18",
+    "vue-backtotop": "^1.6.1",
     "vue-router": "^2.7.0",
     "vue-template-compiler": "^2.6.10",
     "vuetify": "^1.5.16"
