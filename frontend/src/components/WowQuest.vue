@@ -102,7 +102,7 @@
       <v-toolbar-title class="mr-5 align-center hidden-sm-and-down">
         <span class="title" style="line-height:50px">WoW Original Quest</span>         
       </v-toolbar-title>
-      <div style="width:322px;height:52px;margin:0 auto;display:inline;border:1px solid #fff;" class="hidden-sm-and-down" >
+      <div style="width:322px;height:52px;margin:0 auto;display:inline;" class="hidden-sm-and-down" >
           <ins class="kakao_ad_area" style="display:none;" 
             data-ad-unit    = "DAN-sl68ibd33y9i" 
             data-ad-width   = "320" 
@@ -139,6 +139,37 @@
        
       <v-container fill-height wrap :class="{'pa-0': $vuetify.breakpoint.smAndDown, 'pa-5': $vuetify.breakpoint.mdAndUp}">
         <v-layout wrap>
+          <!-- <v-flex>
+            {{auctionList.length}} 개
+             {{Object.keys(actionItemGroupBy).length}}
+            <pre>
+            {{actionItemGroupBy}}
+          </pre> -->
+
+
+            <!-- <table>
+              <tr>
+              <th>아이템</th>
+              <th>등록자</th>
+              <th>렐름</th>
+              <th>경매금액</th>
+              <th>바로 사기</th>
+              <th>수량</th>
+              <th>단가</th>
+              </tr>
+              <tr v-for="action in auctionList.auctions" :key="action.auc"> 
+              <td> {{action.item}}</td>
+              <td>{{action.owner}}</td>
+              <td>{{action.ownerRealm}}</td>
+              <td text-xs-right>{{action.bid}}</td>
+              <td text-xs-right>{{action.buyout}}</td>
+              <td text-xs-right>{{action.quantity}}</td>
+              <td text-xs-right>{{action.bid/action.quantity}}</td>
+             
+            </tr> -->
+            </table>
+            
+          </v-flex>
           <v-flex v-if="!isClassShow">
             <v-sheet class="pa-4 align-center primary lighten-2" dark>
               {{ area }}
@@ -184,7 +215,7 @@ export default {
   },
   data () {
     return {
-      auctionList: {},
+      auctionList: [],
       tree: [],
       active: [],
       drawer: null,
@@ -211,6 +242,10 @@ export default {
     }
   },
   computed: {
+    actionItemGroupBy () {
+      var groupItem = this._.groupBy(this.auctionList, 'item')
+      return groupItem || []
+    },
     imageWidth () {
       switch (this.$vuetify.breakpoint.name) {
         case 'xs': return '100%'
@@ -251,7 +286,8 @@ export default {
       this.getDirectory()
     },
     async getAuction () {
-
+      // var result = await this.$http.get(`${this.devServer}/wowApi`, {})
+      this.auctionList = [] // result.data.auctions
     },
     searchQuest () {
       var keyword = this.search

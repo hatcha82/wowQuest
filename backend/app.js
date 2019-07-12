@@ -16,6 +16,8 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var movies = require('./routes/movies');
 var quests = require('./routes/quests');
+var wowApi = require('./routes/wowApi');
+
 
 var app = express();
 
@@ -45,6 +47,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', quests);
 app.use('/list', quests);
 app.use('/users', users);
+app.use('/wowApi', wowApi);
+
 //app.use('/api/movies', movies);
 app.use(require('connect-history-api-fallback')())
 

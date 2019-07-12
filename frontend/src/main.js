@@ -5,9 +5,11 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import Vuetify from 'vuetify'
+import VueLodash from 'vue-lodash'
 // index.js or main.js
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 Vue.use(Vuetify)
+Vue.use(VueLodash)
 Vue.prototype.$http = axios
 
 /* eslint-disable no-new */
