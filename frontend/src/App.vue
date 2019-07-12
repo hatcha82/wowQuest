@@ -2,11 +2,12 @@
   <div id="app">
     
     <router-view></router-view>
-    <back-to-top text="Back to top"></back-to-top>
+    
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'app'
 }

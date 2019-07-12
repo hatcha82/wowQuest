@@ -7,10 +7,8 @@
       fixed
       clipped
       app
-     
-      
     >
-    <h1  class="primary white--text pa-2" >일반 퀘스트</h1>         
+    <h1  class="primary white--text pa-2" >일반 퀘스트<v-btn @click="reset" small  icon  color="primary lighten-1"> <v-icon>refresh</v-icon></v-btn></h1>         
     <div class="pa-3">
           <v-treeview
           v-model="tree"
@@ -46,7 +44,7 @@
 
           </v-treeview>
     </div>
-      <h1  class="primary white--text pa-2" >직업 퀘스트</h1>     
+      <h1  class="primary white--text pa-2" >직업 퀘스트<v-btn @click="reset" small  icon  color="primary lighten-1"> <v-icon>refresh</v-icon></v-btn></h1>     
      <div class="pa-3">
           <v-treeview
             v-if="classQuestlist.length > 0"
@@ -166,10 +164,11 @@
               <td text-xs-right>{{action.quantity}}</td>
               <td text-xs-right>{{action.bid/action.quantity}}</td>
              
-            </tr> -->
+            </tr>
             </table>
-            
+             
           </v-flex>
+          -->
           <v-flex v-if="!isClassShow">
             <v-sheet class="pa-4 align-center primary lighten-2" dark>
               {{ area }}
@@ -191,6 +190,11 @@
         </v-layout>
       </v-container>
     </v-content>
+    <transition name="back-to-top-fade">
+     <v-btn  v-if="visible" fab dark  fixed bottom right style="bottom:60px" @click="$vuetify.goTo(0)" color="primary">
+      <v-icon dark>keyboard_arrow_up</v-icon>
+    </v-btn>
+    </transition>
     <v-footer
     inset
      height="auto"
@@ -201,20 +205,27 @@
  data-ad-unit    = "DAN-ubge40ui0xma" 
  data-ad-width   = "320" 
  data-ad-height  = "50"></ins> 
+    
+     
     </v-footer>
+   
   </v-app>
   
 </template>
 
 <script>
+import VmBackTop from 'vue-back-top'
+
 export default {
   filters: {
+    components: {VmBackTop},
     fileFilter (value) {
       return value.replace('.jpg', '').replace('.png', '').replace('.htm', '')
     }
   },
   data () {
     return {
+      visible: false,
       auctionList: [],
       tree: [],
       active: [],
@@ -242,6 +253,7 @@ export default {
     }
   },
   computed: {
+
     actionItemGroupBy () {
       var groupItem = this._.groupBy(this.auctionList, 'item')
       return groupItem || []
@@ -277,10 +289,29 @@ export default {
     }
   },
   mounted () {
+    window.smoothscroll = () => {
+      let currentScroll = document.documentElement.scrollTop || document.body.scrollTop
+      if (currentScroll > 0) {
+        window.requestAnimationFrame(window.smoothscroll)
+        window.scrollTo(0, Math.floor(currentScroll - (currentScroll / 5)))
+      }
+    }
+    window.addEventListener('scroll', this.catchScroll)
+
     this.getAuction()
     this.getDirectory()
   },
   methods: {
+    catchScroll () {
+      var visibleoffset = 0
+      const pastTopOffset = window.pageYOffset > parseInt(visibleoffset)
+      const pastBottomOffset = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - parseInt(visibleoffset)
+      this.visible = parseInt(visibleoffset) > 0 ? pastTopOffset && !pastBottomOffset : pastTopOffset
+     // this.scrollFn(this)
+    },
+    backtoTopOn () {
+      return window.scrollY
+    },
     reset () {
       this.items = []
       this.getDirectory()
