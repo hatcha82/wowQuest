@@ -8,6 +8,7 @@
       clipped
       app
     >
+   <a href="/"> <h1  class="primary white--text pa-2 mb-1 hidden-sm-and-up" > 레벨업 지역</h1>       </a>
     <h1  class="primary white--text pa-2" >일반 퀘스트<v-btn @click="reset" small  icon  color="primary lighten-1"> <v-icon>refresh</v-icon></v-btn></h1>         
     <div class="pa-3">
           <v-treeview
@@ -22,7 +23,6 @@
               <v-icon
                 v-if="!item.children"
                 :color="active ? 'primary' : ''"
-
               >
               </v-icon>
             </template>
@@ -98,7 +98,7 @@
     >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title class="mr-5 align-center hidden-sm-and-down">
-        <span class="title" style="line-height:50px">WoW Original Quest</span>         
+        <span class="title" style="line-height:50px"><a href="/" class="" style="color:white;text-decoration: none;"> WoW Original Quest </a></span>         
       </v-toolbar-title>
       <div style="width:322px;height:52px;margin:0 auto;display:inline;" class="hidden-sm-and-down" >
           <ins class="kakao_ad_area" style="display:none;" 
@@ -136,16 +136,57 @@
         </div> -->
        
       <v-container fill-height wrap :class="{'pa-0': $vuetify.breakpoint.smAndDown, 'pa-5': $vuetify.breakpoint.mdAndUp}">
-        <v-layout wrap>
-          <!-- <v-flex>
+        <v-layout wrap v-if="isHome">
+          <v-flex  pa-3>
+            <h3>동부왕국 레벨별 지역</h3>
+          <img :src="`${devServer}/static/와우오리퀘스트/00 동부왕국 레벨별 지역.jpg`"  :style="`width:${imageWidth};padding:20px 0;`"/>
+          </v-flex>          
+          <v-flex pa-3>
+            <h3>칼림도어 레벨별 지역</h3>
+            <img :src="`${devServer}/static/와우오리퀘스트/00 칼림도어 레벨별 지역.jpg`"  :style="`width:${imageWidth};padding:20px 0`"/>
+          </v-flex>
+        </v-layout>
+        <v-layout wrap v-if="!isHome">          
+          <!-- <a :href="`https://ko.wowhead.com/quest=826`" data-wh-icon-size="small">[item]</a> 
+          
             {{auctionList.length}} 개
-             {{Object.keys(actionItemGroupBy).length}}
-            <pre>
+             {{Object.keys(actionItemGroupBy).length}} -->
+            <!-- <pre>
             {{actionItemGroupBy}}
-          </pre> -->
-
-
-            <!-- <table>
+          </pre>  -->
+           <!-- {{pagination}}
+            <v-text-field
+        v-model="search2"
+        append-icon="search"
+        label="Search"
+        single-line
+        hide-details
+      ></v-text-field>
+ <v-data-table
+    :items="auctionList"
+    :header="[{
+            text: 'Item',value: 'item'
+          },
+          { text: 'Calories', value: 'owner' },
+          { text: 'Fat (g)', value: 'ownerRealm' },
+          { text: 'Carbs (g)', value: 'buyout' },
+          { text: 'Protein (g)', value: 'quantity' }
+      ]"
+     :search="search2"
+    class="elevation-1"
+    dark
+     :pagination.sync="pagination"
+  >
+    <template v-slot:items="props">
+      <td>{{ props.item.name }}</td>
+      <td class="text-xs-left"> <a :href="`https://ko.wowhead.com/item=${props.item.item}`" data-wh-icon-size="small">[item]</a> </td>
+      <td class="text-xs-right">{{ props.item.owner }}</td>
+      <td class="text-xs-right">{{ props.item.ownerRealm }}</td>
+      <td class="text-xs-right">{{ props.item.buyout }}</td>
+      <td class="text-xs-right">{{ props.item.quantity }}</td>
+    </template>
+  </v-data-table> -->
+           <!-- <table>
               <tr>
               <th>아이템</th>
               <th>등록자</th>
@@ -155,20 +196,18 @@
               <th>수량</th>
               <th>단가</th>
               </tr>
-              <tr v-for="action in auctionList.auctions" :key="action.auc"> 
-              <td> {{action.item}}</td>
+              <tr v-for="action in auctionList" :key="action.auc"> 
+              <td> <a :href="`https://ko.wowhead.com/item=${action.item}`"  >[item]</a> </td>
               <td>{{action.owner}}</td>
               <td>{{action.ownerRealm}}</td>
               <td text-xs-right>{{action.bid}}</td>
               <td text-xs-right>{{action.buyout}}</td>
               <td text-xs-right>{{action.quantity}}</td>
               <td text-xs-right>{{action.bid/action.quantity}}</td>
-             
             </tr>
-            </table>
+            </table> -->
              
-          </v-flex>
-          -->
+          
           <v-flex v-if="!isClassShow">
             <v-sheet class="pa-4 align-center primary lighten-2" dark>
               {{ area }}
@@ -215,6 +254,7 @@
 
 <script>
 import VmBackTop from 'vue-back-top'
+import { setTimeout } from 'timers'
 
 export default {
   filters: {
@@ -225,17 +265,23 @@ export default {
   },
   data () {
     return {
+      pagination: {
+        page: 0,
+        rowsPerPage: 25 // -1 for All",
+      },
+      isHome: true,
       visible: false,
       auctionList: [],
       tree: [],
       active: [],
-      drawer: null,
+      drawer: false,
       isClassShow: true,
       classQuestURL: '',
       show: false,
       open: [],
       openClass: [],
       search: null,
+      search2: '',
       caseSensitive: false,
       list: [],
       items: [],
@@ -268,7 +314,7 @@ export default {
       }
     },
     devServer () {
-      return ''
+      return '' // 'http://localhost:3009'
     },
     filter () {
       return this.caseSensitive
@@ -278,6 +324,15 @@ export default {
 
   },
   watch: {
+    pagination () {
+      window.$WowheadPower.hideTooltip()
+      setTimeout(
+        function () {
+          window.$WowheadPower.refreshLinks()
+          window.$WowheadPower.hideTooltip()
+        }
+      , 1)
+    },
     search (value) {
       if (value === null) {
         this.items = this.list.filter(obj => obj.type === 'dir')
@@ -317,8 +372,14 @@ export default {
       this.getDirectory()
     },
     async getAuction () {
-      // var result = await this.$http.get(`${this.devServer}/wowApi`, {})
-      this.auctionList = [] // result.data.auctions
+      var result = await this.$http.get(`${this.devServer}/wowApi`, {})
+      this.auctionList = result.data.auctions
+      setTimeout(
+        function () {
+          window.$WowheadPower.refreshLinks()
+          window.$WowheadPower.hideTooltip()
+        }
+      , 1)
     },
     searchQuest () {
       var keyword = this.search
@@ -346,6 +407,7 @@ export default {
 
         return area.indexOf(keyword) > -1 || foundQuest.length > 0
       })
+      this.drawer = true
     },
     async getDirectory () {
       try {
@@ -356,13 +418,14 @@ export default {
         result = await this.$http.get(`${this.devServer}/classQuestlist`, {})
         this.classList = result.data
         this.classQuestlist = this.classList.filter(obj => obj.type === 'dir')
-        this.getQuest(this.items[0].name)
+       // this.getQuest(this.items[0].name)
       } catch (error) {
         console.log(error)
       }
     },
     getClassQuest (item) {
       this.isClassShow = true
+      this.isHome = false
       var url = `${this.devServer}/static/와우오리퀘스트/와우섬게 직업퀘/${item.area}/${item.name}`
       this.classQuestURL = url
 
@@ -372,6 +435,7 @@ export default {
     },
     async getQuest (area, quest) {
       try {
+        this.isHome = false
         this.isClassShow = false
         this.area = area
         var result = await this.$http.get(`${this.devServer}/list/${area}`, {})

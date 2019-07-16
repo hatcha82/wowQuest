@@ -12,9 +12,19 @@ router.get('/', async function(req, res, next) {
   });
 
   
+
+  
   
   
   // var result  = await request(url,  { json: true });
 });
-
+router.get('/quests', async function(req, res, next) {
+  var url = 'https://ko.classic.wowhead.com/quest=826?xml';
+  request( encodeURI(url),{ json: true }, function (error, response, body) {
+    //console.log('error:', error); // Print the error if one occurred
+    //console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    //console.log('body:', body); // Print the HTML for the Google homepage.
+    res.send(body)
+  });
+});
 module.exports = router;
