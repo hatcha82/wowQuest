@@ -4,8 +4,8 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 // import Index from 'components/IndexPage'
-import Show from 'components/ShowPage'
 import wowQuest from 'components/WowQuest'
+import WowAuction from 'components/WowAuction'
 export default new Router({
   mode: 'history',
   routes: [
@@ -15,9 +15,9 @@ export default new Router({
       component: wowQuest
     },
     {
-      path: '/:id',
-      name: 'show',
-      component: Show
+      path: '/auction',
+      name: 'WowAuction',
+      component: WowAuction
     }
   ]
 })
