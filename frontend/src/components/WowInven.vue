@@ -5,10 +5,11 @@
     <v-navigation-drawer
       v-model="drawer"
       fixed
+      :temporary="true"
       clipped
       app
     >
-   <a href="/"> <h1  class="primary white--text pa-2 mb-1 hidden-sm-and-up" > 레벨업 지역</h1>       </a>
+    <a href="/"> <h1  class="primary white--text pa-2 mb-1 hidden-sm-and-up" > 레벨업 지역</h1>       </a>
     <h1  class="primary white--text pa-2" >일반 퀘스트<v-btn @click="reset" small  icon  color="primary lighten-1"> <v-icon>refresh</v-icon></v-btn></h1>         
     <div class="pa-3">
           <v-treeview
@@ -80,7 +81,7 @@
         style="margin-top:85px;margin-right:20px"
         :width="160"
         :height="620"
-        value="true"
+        :value="false"
       >
       <div style="width:160px;height:600px;"  >
       <ins class="kakao_ad_area" style="display:none;" 
@@ -89,51 +90,20 @@
         data-ad-height  = "600"></ins> 
       </div>
       </v-navigation-drawer> 
-    <v-toolbar
-      color="primary"
-      fixed
-      dark
-      clipped-left
-      app
-    >
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title class="mr-5 align-center hidden-sm-and-down">
-        <span class="title" style="line-height:50px"><a href="/" class="" style="color:white;text-decoration: none;"> WoW Original Quest </a></span>         
-      </v-toolbar-title>
-      <div style="width:322px;height:52px;margin:0 auto;display:inline;" class="hidden-sm-and-down" >
-          <ins class="kakao_ad_area" style="display:none;" 
-            data-ad-unit    = "DAN-sl68ibd33y9i" 
-            data-ad-width   = "320" 
-            data-ad-height  = "50"></ins> 
-      </div>
-      <v-spacer class="hidden-sm-and-down"></v-spacer>
-          <v-text-field
-            v-model="search"
-            label="퀘스트명을 입력해주세요."
-            append-icon="search"
-            flat
-            solo-inverted
-            single-line
-            hide-details
-            clearable
-            clear-icon="close"
-            @keyup.enter="searchQuest"
-          />
-      
-    </v-toolbar>
+   
     
       
 
     
     <v-content pa-0 ma-0>
      
-      <div class="mt-2">
-       <iframe :src="`${devServer}/board/powerbbs.php?come_idx=5417`" style="display:block; width:100%; height: 100vh"></iframe>
+      <div class="">
+       <iframe src="http://m.inven.co.kr/board/powerbbs.php?come_idx=5417" style="display:block; width:100%; height:100vh;border:none"></iframe>
       </div>
     </v-content>
     <transition name="back-to-top-fade">
-     <v-btn  v-if="visible" fab dark  fixed bottom right style="bottom:60px" @click="$vuetify.goTo(0)" color="primary">
-      <v-icon dark>keyboard_arrow_up</v-icon>
+     <v-btn fab dark  fixed bottom left style="bottom:60px" @click="$router.push({ path: '/' })" color="primary">
+     Quest
     </v-btn>
     </transition>
     <v-footer
@@ -176,7 +146,7 @@ export default {
       auctionList: [],
       tree: [],
       active: [],
-      drawer: false,
+      drawer: null,
       isClassShow: true,
       classQuestURL: '',
       show: false,
@@ -216,7 +186,7 @@ export default {
       }
     },
     devServer () {
-      return ''
+      return 'http://localhost:3009'
     },
     filter () {
       return this.caseSensitive
@@ -260,7 +230,7 @@ export default {
   },
   methods: {
     catchScroll () {
-      var visibleoffset = 0
+      var visibleoffset = -100
       const pastTopOffset = window.pageYOffset > parseInt(visibleoffset)
       const pastBottomOffset = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - parseInt(visibleoffset)
       this.visible = parseInt(visibleoffset) > 0 ? pastTopOffset && !pastBottomOffset : pastTopOffset

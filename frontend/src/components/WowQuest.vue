@@ -9,6 +9,9 @@
       app
     >
    <a href="/"> <h1  class="primary white--text pa-2 mb-1 hidden-sm-and-up" > 레벨업 지역</h1>       </a>
+   <a href="/WowInven"> <h1  class="primary white--text pa-2 mb-1 hidden-sm-and-up" >인벤 클래식 게시판</h1>       </a>
+
+   
     <h1  class="primary white--text pa-2" >일반 퀘스트<v-btn @click="reset" small  icon  color="primary lighten-1"> <v-icon>refresh</v-icon></v-btn></h1>         
     <div class="pa-3">
           <v-treeview
@@ -44,6 +47,7 @@
 
           </v-treeview>
     </div>
+    
       <h1  class="primary white--text pa-2" >직업 퀘스트<v-btn @click="reset" small  icon  color="primary lighten-1"> <v-icon>refresh</v-icon></v-btn></h1>     
      <div class="pa-3">
           <v-treeview
@@ -80,7 +84,7 @@
         style="margin-top:85px;margin-right:20px"
         :width="160"
         :height="620"
-        value="true"
+        :value="false"
       >
       <div style="width:160px;height:600px;"  >
       <ins class="kakao_ad_area" style="display:none;" 
@@ -126,15 +130,12 @@
 
     
     <v-content pa-0 ma-0>
-     
-
        <!-- <div style="width:728px;height:90px;margin:0 auto" class="mt-3">
           <ins class="kakao_ad_area" style="display:none;" 
               data-ad-unit    = "DAN-rhm4trbf12ye" 
               data-ad-width   = "728" 
               data-ad-height  = "90"></ins> 
         </div> -->
-       
       <v-container fill-height wrap :class="{'pa-0': $vuetify.breakpoint.smAndDown, 'pa-5': $vuetify.breakpoint.mdAndUp}">
         <v-layout wrap v-if="isHome">
           <v-flex  pa-3>
@@ -419,9 +420,11 @@ export default {
         this.classList = result.data
         this.classQuestlist = this.classList.filter(obj => obj.type === 'dir')
        // this.getQuest(this.items[0].name)
+        this.drawer = false
       } catch (error) {
         console.log(error)
       }
+      this.drawer = false
     },
     getClassQuest (item) {
       this.isClassShow = true
