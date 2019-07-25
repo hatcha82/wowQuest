@@ -14,7 +14,6 @@ router.get('/powerbbs.php', async function(req, res, next) {
       figure{margin:0 auto;padding:0}
       #boardList{padding:0}
       ul li{display: block;list-style:none;padding:5px 0}
-      ul li img{display:none}
       a.subject{display:block}
       a.cmtWrapForList.icon_mt{display:none}
       </style>
