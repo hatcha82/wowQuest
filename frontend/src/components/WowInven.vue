@@ -10,68 +10,7 @@
       app
     >
     <a href="/"> <h1  class="primary white--text pa-2 mb-1 hidden-sm-and-up" > 레벨업 지역</h1>       </a>
-    <h1  class="primary white--text pa-2" >일반 퀘스트<v-btn @click="reset" small  icon  color="primary lighten-1"> <v-icon>refresh</v-icon></v-btn></h1>         
-    <div class="pa-3">
-          <v-treeview
-          v-model="tree"
-            v-if="items.length > 0"
-            :items="items"
-            :open.sync="open"
-            :multiple-active="false"
-            open-on-click
-          >
-            <template v-slot:prepend="{ item, active }">
-              <v-icon
-                v-if="!item.children"
-                :color="active ? 'primary' : ''"
-              >
-              </v-icon>
-            </template>
-            <template v-slot:label="{ item, open }">
-
-               <div class="questItem"
-                v-if="!item.children"
-                @click="getQuest(item.area,item.name)"
-              >{{ item.name | fileFilter }} </div>
-              <div
-                v-else
-                @click="getQuest(item.name)">
-
-                <span  :class="`${open ? 'primary--text' :''}`">
-             {{ item.name | fileFilter }}
-                </span>
-              </div>
-            </template>
-
-          </v-treeview>
-    </div>
-      <h1  class="primary white--text pa-2" >직업 퀘스트<v-btn @click="reset" small  icon  color="primary lighten-1"> <v-icon>refresh</v-icon></v-btn></h1>     
-     <div class="pa-3">
-          <v-treeview
-            v-if="classQuestlist.length > 0"
-            :items="classQuestlist"
-            :open.sync="openClass"
-            
-            open-on-click
-          >
-            <template v-slot:label="{ item }">
-               <div class="questItem"
-                v-if="!item.children"
-                @click="getClassQuest(item)"
-              >{{ item.name | fileFilter }} </div>
-              <div
-                v-else
-              >
-                <span :color="item.name.indexOf(search) > -1 ? 'blue' : 'red'">
-                  {{ item.name | fileFilter }}
-                </span>
-              </div>
-            </template>
-
-          </v-treeview>
-     
-
-    </div>
+    
     </v-navigation-drawer>
      <v-navigation-drawer
      class="hidden-sm-and-down"
