@@ -9,7 +9,7 @@
       app
     >
    <a href="/"> <h1  class="primary white--text pa-2 mb-1 hidden-sm-and-up" > 레벨업 지역</h1>       </a>
-   <a href="/WowInven"> <h1  class="primary white--text pa-2 mb-1 hidden-sm-and-up" >인벤 클래식 게시판</h1>       </a>
+   <a href="/WowInven"> <h1  class="primary white--text pa-2 mb-1 " >인벤 클래식 게시판</h1>       </a>
 
    
     <h1  class="primary white--text pa-2" >일반 퀘스트<v-btn @click="reset" small  icon  color="primary lighten-1"> <v-icon>refresh</v-icon></v-btn></h1>         
