@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 const fs = require('fs');  
 const folder = `${__dirname}/../public/static/와우오리퀘스트/`;
-
+const request = require('request');
+const cheerio = require('cheerio')
 
 function readFolder(folder, area){
   
@@ -63,6 +64,19 @@ router.get('/list', function (req, res) {
   })
   res.json(allList);
 });
+
+
+router.get('/levelArea', function (req, res) {
+  var url =  `https://docs.google.com/spreadsheets/d/e/2PACX-1vRLd3JnzK__T6PWapmdkXPISybAIiMN5VSZrAskh87sOi_CV5j3mLTVtV63DfS_9qfJqXd_DWPqFK30/pubhtml`
+  request( encodeURI(url),{ json: false }, function (error, response, body) {
+    const $ = cheerio.load(body)
+
+    var html = ''
+    html = $.html();
+    res.send(html)
+  });
+});
+
 router.get('/list/:area', function (req, res) {
   var list = readFolder(`${folder}${req.params.area}`)
   res.json(list);
