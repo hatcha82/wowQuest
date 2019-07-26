@@ -6,10 +6,12 @@
       v-model="drawer"
       fixed
       clipped
+      :permanent="fixDrawer"
       app
+      
     >
-   <a href="/"> <h1  class="primary white--text pa-2 mb-1 hidden-sm-and-up" > 레벨업 지역</h1>       </a>
-  <router-link to="/WowInven">   <h1  class="primary white--text pa-2 mb-1 " >인벤 클래식 게시판</h1>       </router-link>
+   <a href="#" @click="isHome =true;drawer=false;"> <h1  class="primary white--text pa-2 " > 레벨업 지역</h1>       </a>
+  <!-- <router-link to="/WowInven">   <h1  class="primary white--text pa-2 mb-1 " >인벤 클래식 게시판</h1>       </router-link> -->
 
    
     <h1  class="primary white--text pa-2" >일반 퀘스트<v-btn @click="reset" small  icon  color="primary lighten-1"> <v-icon>refresh</v-icon></v-btn></h1>         
@@ -39,8 +41,7 @@
                 v-else
                 @click="getQuest(item.name)">
 
-                <span  :class="`${open ? 'primary--text' :''}`">
-             {{ item.name | fileFilter }}
+                <span  :class="`${open ? 'primary--text' :''}`" v-html="getLevelAreaNameByArea(item.name )">
                 </span>
               </div>
             </template>
@@ -54,7 +55,6 @@
             v-if="classQuestlist.length > 0"
             :items="classQuestlist"
             :open.sync="openClass"
-            
             open-on-click
           >
             <template v-slot:label="{ item }">
@@ -70,10 +70,7 @@
                 </span>
               </div>
             </template>
-
-          </v-treeview>
-     
-
+          </v-treeview>     
     </div>
     </v-navigation-drawer>
      <v-navigation-drawer
@@ -81,6 +78,7 @@
         fixed
         app
         right
+          :permanent="fixDrawer"
         style="margin-top:85px;margin-right:20px"
         :width="160"
         :height="620"
@@ -136,17 +134,28 @@
               data-ad-width   = "728" 
               data-ad-height  = "90"></ins> 
         </div> -->
-      <v-container fill-height wrap :class="{'pa-0': $vuetify.breakpoint.smAndDown, 'pa-5': $vuetify.breakpoint.mdAndUp}">
-        <v-layout wrap v-if="isHome">
-          <v-flex  pa-3>
-            <h3>동부왕국 레벨별 지역</h3>
+      <v-container :class="{'pa-0': $vuetify.breakpoint.smAndDown, 'pa-5': $vuetify.breakpoint.mdAndUp}">
+        <v-layout wrap  v-if="isHome" >
+          <v-flex xs12> <h3 class="primary--text">동부왕국 레벨별 지역</h3></v-flex>
+          <v-flex xs6 sm3 lg2 class="pa-1"  v-for="zone in levelUpListByZone('동부왕국') " :key="zone.LAND + zone.AREA">
+            <v-btn class="primary" block  @click="getQuest(zone.AREA)">{{zone.AREA}}<span style="font-size:0.8em">&nbsp;({{zone.MIN_LVL}} - {{zone.MAX_LVL}})</span></v-btn>
+          </v-flex>
+          <v-flex xs12> <h3 class="red--text mt-3">칼림도어 레벨별 지역</h3></v-flex>
+           <v-flex xs6 sm3 lg2 class="pa-2" v-for="zone in levelUpListByZone('칼림도어') "
+             :key="zone.LAND + zone.AREA">
+             <v-btn class="red white--text" block @click="getQuest(zone.AREA)" >{{zone.AREA}} <span style="font-size:0.8em">&nbsp;({{zone.MIN_LVL}} - {{zone.MAX_LVL}})</span></v-btn>
+          </v-flex>
+        </v-layout>
+
+          <!-- <v-flex  pa-3>
+          
           <img :src="`${devServer}/static/와우오리퀘스트/00 동부왕국 레벨별 지역.jpg`"  :style="`width:${imageWidth};padding:20px 0;`"/>
           </v-flex>          
           <v-flex pa-3>
             <h3>칼림도어 레벨별 지역</h3>
             <img :src="`${devServer}/static/와우오리퀘스트/00 칼림도어 레벨별 지역.jpg`"  :style="`width:${imageWidth};padding:20px 0`"/>
-          </v-flex>
-        </v-layout>
+          </v-flex> -->
+       
         <v-layout wrap v-if="!isHome">          
           <!-- <a :href="`https://ko.wowhead.com/quest=826`" data-wh-icon-size="small">[item]</a> 
           
@@ -236,6 +245,7 @@
     </v-btn>
     </transition>
     <v-footer
+    app
     inset
      height="auto"
      fixed
@@ -287,6 +297,7 @@ export default {
       list: [],
       items: [],
       area: null,
+      levelUPAreaList: [],
       classList: [],
       questList: [],
       classQuestlist: [],
@@ -305,6 +316,15 @@ export default {
       var groupItem = this._.groupBy(this.auctionList, 'item')
       return groupItem || []
     },
+    fixDrawer () {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs': return false
+        case 'sm': return false
+        case 'md': return false
+        case 'lg': return true
+        case 'xl': return true
+      }
+    },
     imageWidth () {
       switch (this.$vuetify.breakpoint.name) {
         case 'xs': return '100%'
@@ -315,7 +335,7 @@ export default {
       }
     },
     devServer () {
-      return '' // 'http://localhost:3009'
+      return ''// 'http://localhost:3009'
     },
     filter () {
       return this.caseSensitive
@@ -353,11 +373,28 @@ export default {
       }
     }
     window.addEventListener('scroll', this.catchScroll)
-
+    this.getLevelUpArea()
     this.getAuction()
     this.getDirectory()
   },
   methods: {
+    getLevelAreaNameByArea (area) {
+      var list = this.levelUPAreaList.filter(zone => { return zone.AREA === area })
+      if (list.length === 1) {
+        return `${list[0].AREA} <span style="font-size:0.7em">(${list[0].MIN_LVL}-${list[0].MAX_LVL})</span>`
+      } else {
+        return area
+      }
+    },
+    levelUpListByZone (LAND) {
+      var list = this.levelUPAreaList.filter(zone => { return zone.LAND === LAND })
+      return list.sort(function (a, b) {
+        var alvel = parseInt(a.MIN_LVL)
+        var blvel = parseInt(b.MIN_LVL)
+        return alvel < blvel ? -1 : 1
+      })
+      // return list.sort((a, b) => { return parseInt(a.MIN_LVL) > parseInt(b.MIN_LVL) })
+    },
     catchScroll () {
       var visibleoffset = 0
       const pastTopOffset = window.pageYOffset > parseInt(visibleoffset)
@@ -371,6 +408,10 @@ export default {
     reset () {
       this.items = []
       this.getDirectory()
+    },
+    async getLevelUpArea () {
+      var result = await this.$http.get(`${this.devServer}/levelArea`, {})
+      this.levelUPAreaList = result.data
     },
     async getAuction () {
       var result = await this.$http.get(`${this.devServer}/wowApi`, {})
