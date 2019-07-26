@@ -1,4 +1,8 @@
 #/bin/bash
+cd frontend
+npm install
+npm run build
+cd ..
 cp -rfv backend/* ../wowQuestHeroku
 cd ../wowQuestHeroku
 git status
