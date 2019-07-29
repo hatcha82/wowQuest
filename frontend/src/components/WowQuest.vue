@@ -109,7 +109,7 @@
             data-ad-height  = "50"></ins> 
       </div>
       <div class="px-2" style="font-size:10px">
-      클래식 오픈일 까지<Br/>{{dDayCount}}남았습니다.
+      {{dDayCount}}
       </div>      
       <v-spacer class="hidden-sm-and-down"></v-spacer>
           <v-text-field
@@ -339,7 +339,7 @@ export default {
       }
     },
     devServer () {
-      return '' / 'http://localhost:3009' //
+      return '' // 'http://localhost:3009' //
     },
     filter () {
       return this.caseSensitive
@@ -383,7 +383,11 @@ export default {
       var now = self.$moment()
       var diff = release.diff(now)
       var diffDuration = self.$moment.duration(diff)
-      self.dDayCount = `${diffDuration.days()}일 ${diffDuration.hours()}시간 ${diffDuration.minutes()}분 ${diffDuration.seconds()}초`
+      if (diff > 0) {
+        self.dDayCount = `클래식 오픈까지 ${diffDuration.days()}일 ${diffDuration.hours()}시간 ${diffDuration.minutes()}분 ${diffDuration.seconds()}초 남았습니다.`
+      } else {
+        self.dDayCount = `클래식 오픈이후 ${Math.abs(diffDuration.days())}일 ${Math.abs(diffDuration.hours())}시간 ${Math.abs(diffDuration.minutes())}분 ${Math.abs(diffDuration.seconds())}초 지났습니다.`
+      }
     }
     setInterval(dDayCountInter, 1000)
     this.getLevelUpArea()
