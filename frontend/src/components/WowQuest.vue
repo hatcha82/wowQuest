@@ -108,6 +108,9 @@
             data-ad-width   = "320" 
             data-ad-height  = "50"></ins> 
       </div>
+      <div class="px-2" style="font-size:10px">
+      클래식 오픈일 까지<Br/>{{dDayCount}}남았습니다.
+      </div>      
       <v-spacer class="hidden-sm-and-down"></v-spacer>
           <v-text-field
             v-model="search"
@@ -265,7 +268,7 @@
 
 <script>
 import VmBackTop from 'vue-back-top'
-import { setTimeout } from 'timers'
+import { setTimeout, setInterval } from 'timers'
 
 export default {
   filters: {
@@ -301,6 +304,7 @@ export default {
       classList: [],
       questList: [],
       classQuestlist: [],
+      dDayCount: '',
       headers: [
         {
           sortable: false,
@@ -335,7 +339,7 @@ export default {
       }
     },
     devServer () {
-      return ''// 'http://localhost:3009'
+      return '' / 'http://localhost:3009' //
     },
     filter () {
       return this.caseSensitive
@@ -373,6 +377,15 @@ export default {
       }
     }
     window.addEventListener('scroll', this.catchScroll)
+    var self = this
+    var dDayCountInter = function () {
+      var release = self.$moment('2019-08-27 07:00:00')
+      var now = self.$moment()
+      var diff = release.diff(now)
+      var diffDuration = self.$moment.duration(diff)
+      self.dDayCount = `${diffDuration.days()}일 ${diffDuration.hours()}시간 ${diffDuration.minutes()}분 ${diffDuration.seconds()}초`
+    }
+    setInterval(dDayCountInter, 1000)
     this.getLevelUpArea()
     this.getAuction()
     this.getDirectory()
