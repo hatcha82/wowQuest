@@ -99,8 +99,10 @@
       app
     >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title class="mr-5 align-center hidden-sm-and-down">
-        <span class="title" style="line-height:50px"><a href="/" class="" style="color:white;text-decoration: none;"> WoW Original Quest </a></span>         
+
+      <v-toolbar-title class="mr-5 align-center hidden-sm-and-down">        
+        <div class="title" style="line-height:50px"><a href="/" class="" style="color:white;text-decoration: none;"> 와우 클래식 퀘스트</a></div> 
+        <div style="font-size:11px">플레이포럼 자료</div>
       </v-toolbar-title>
       <div style="width:322px;height:52px;margin:0 auto;display:inline;" class="hidden-sm-and-down" >
           <ins class="kakao_ad_area" style="display:none;" 
@@ -108,11 +110,27 @@
             data-ad-width   = "320" 
             data-ad-height  = "50"></ins> 
       </div>
-      <div class="px-2" style="font-size:10px">
-      {{dDayCount}}
+      <div class="px-2 white--text" style="font-size:10px">
+      <!-- {{dDayCount}} -->
+       
       </div>      
       <v-spacer class="hidden-sm-and-down"></v-spacer>
-          <v-text-field
+         
+          
+           <v-btn 
+           href="http://www.classicwow.co.kr" target="_blank"
+          class="mx-2 pa-3 py-2" outlined  large   color="grey darken-4">
+           <img src="http://www.classicwow.co.kr/img/logo.png" style="width:80px;margin-right:5px;" alt="클래식 월드 오브 워크래프트 팬사이트;" title="">
+          <div class="hidden-sm-and-down" style="text-align:center">클래식 월드 오브 워크래프트 팬사이트
+          <br>
+          <span style="font-size:9px;">http://www.classicwow.co.kr</span>
+
+          </div>
+
+          
+          </v-btn>
+         
+           <v-text-field
             v-model="search"
             label="퀘스트명을 입력해주세요."
             append-icon="search"
@@ -124,7 +142,9 @@
             clear-icon="close"
             @keyup.enter="searchQuest"
           />
-      
+           <v-btn 
+           href="https://toon.at/donate/637043684917070169" target="_blank"
+          class="mx-2" outlined  fab   color="grey darken-3">후원</v-btn>
     </v-toolbar>
     
       
@@ -141,12 +161,12 @@
         <v-layout wrap  v-if="isHome" >
           <v-flex xs12> <h3 class="primary--text">동부왕국 레벨별 지역</h3></v-flex>
           <v-flex xs6 sm3 lg2 class="pa-1"  v-for="zone in levelUpListByZone('동부왕국') " :key="zone.LAND + zone.AREA">
-            <v-btn class="primary" block  @click="getQuest(zone.AREA)">{{zone.AREA}}<span style="font-size:0.8em">&nbsp;({{zone.MIN_LVL}} - {{zone.MAX_LVL}})</span></v-btn>
+            <v-btn class="grey darken-3 white--text" block  @click="getQuest(zone.AREA)">{{zone.AREA}}<span style="font-size:0.8em">&nbsp;({{zone.MIN_LVL}} - {{zone.MAX_LVL}})</span></v-btn>
           </v-flex>
-          <v-flex xs12> <h3 class="red--text mt-3">칼림도어 레벨별 지역</h3></v-flex>
+          <v-flex xs12> <h3 class="primary--text mt-3">칼림도어 레벨별 지역</h3></v-flex>
            <v-flex xs6 sm3 lg2 class="pa-2" v-for="zone in levelUpListByZone('칼림도어') "
              :key="zone.LAND + zone.AREA">
-             <v-btn class="red white--text" block @click="getQuest(zone.AREA)" >{{zone.AREA}} <span style="font-size:0.8em">&nbsp;({{zone.MIN_LVL}} - {{zone.MAX_LVL}})</span></v-btn>
+             <v-btn class="grey darken-3  white--text" block @click="getQuest(zone.AREA)" >{{zone.AREA}} <span style="font-size:0.8em">&nbsp;({{zone.MIN_LVL}} - {{zone.MAX_LVL}})</span></v-btn>
           </v-flex>
         </v-layout>
 
@@ -339,7 +359,7 @@ export default {
       }
     },
     devServer () {
-      return '' // 'http://localhost:3009' //
+      return 'http://localhost:3009' // '' //
     },
     filter () {
       return this.caseSensitive
@@ -369,6 +389,15 @@ export default {
     }
   },
   mounted () {
+    this.$vuetify.theme = {
+      primary: '#242424',
+      secondary: '#1976D2',
+      accent: '#82B1FF',
+      error: '#FF5252',
+      info: '#2196F3',
+      success: '#4CAF50',
+      warning: '#FFC107'
+    }
     window.smoothscroll = () => {
       let currentScroll = document.documentElement.scrollTop || document.body.scrollTop
       if (currentScroll > 0) {

@@ -1,13 +1,11 @@
 <template>
   <v-app
     id="inspire"
-  >
     <v-navigation-drawer
       v-model="drawer"
       fixed
       clipped
       app
-      
     >
     <h1  class="primary white--text pa-2" >일반 퀘스트</h1>     
     <div class="pa-3">
