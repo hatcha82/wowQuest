@@ -359,7 +359,7 @@ export default {
       }
     },
     devServer () {
-      return 'http://localhost:3009' // '' //
+      return  // '' //'http://localhost:3009'
     },
     filter () {
       return this.caseSensitive
